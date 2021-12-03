@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,52 +22,34 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Animator.SetBool("isCrouchIdling", true);
-            PlayerCollider.center = new Vector3(PlayerCollider.center.x, 0.6f, PlayerCollider.center.z);
-            PlayerCollider.height = 1.11f;
-
+            Animator.SetBool("IsCrouchIdling", true);
         }
         else
         {
-            Animator.SetBool("isCrouchIdling", false);
-            PlayerCollider.center = new Vector3(PlayerCollider.center.x, 0.88f, PlayerCollider.center.z);
-            PlayerCollider.height = 1.68f;
+            Animator.SetBool("IsCrouchIdling", false);
 
         }
 
         if (_forwardInput > 0)
         {
-            if(Input.GetKey(KeyCode.LeftShift))
-            {
-                Animator.SetBool("isCrouchWalkingForward", true);
-            }
-            else
-            {
-                Animator.SetBool("isWalkingForward", true);
-                Animator.SetBool("isWalkingBackwards", false);
-            }
+            Animator.SetBool("IsWalkingForward", true);
+            Animator.SetBool("IsWalkingBackward", false);
 
+            Animator.SetBool("IsIdling", false);
         }
         else if(_forwardInput < 0)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Animator.SetBool("isCrouchWalkingBackwards", true);
-            }
-            else
-            {
-                Animator.SetBool("isWalkingBackwards", true);
-                Animator.SetBool("isWalkingForward", false);
-            }
+            Animator.SetBool("IsWalkingBackward", true);
+            Animator.SetBool("IsWalkingForward", false);
 
-
+            Animator.SetBool("IsIdling", false);
         }
         else
         {
-            Animator.SetBool("isWalkingForward", false);
-            Animator.SetBool("isWalkingBackwards", false);
-            Animator.SetBool("isCrouchWalkingForward", false);
-            Animator.SetBool("isCrouchWalkingBackwards", false);
+            Animator.SetBool("IsWalkingForward", false);
+            Animator.SetBool("IsWalkingBackward", false);
+            Animator.SetBool("IsIdling", true);
+
 
 
         }
